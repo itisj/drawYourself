@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Talk to yourself</title>
+  <link rel="icon" href="./img/icon.PNG" type="image/PNG" sizes="16x16">
+  <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <style>
+  html {background: rgb(209,0,255);
+background: radial-gradient(circle, rgba(209,0,255,1) 2%, rgba(198,255,0,1) 17%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 100%);}
+  body { overflow: hidden; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}
+  .draggable { padding: 0px; margin: 0; mix-blend-mode: difference; }
+  .ui-widget-header p, .ui-widget-content p { margin: 0; }
+  #snaptarget { height: 50vh; }
+
+video {
+  cursor: grab;
+}
+
+.chat, #yourComment {
+  position: absolute;
+  animation-name: move;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  background-color: transparent;
+  margin: 0; padding: 0;
+  font-size: 20px; 
+  color: white; 
+  z-index: 10;
+}
+.chatloop {
+  position: absolute;
+  animation-name: move;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  background-color: transparent;
+  margin: 0; padding: 0;
+  font-size: 20px; 
+  color: white; 
+  z-index: 10;
+}
+.chat:hover, #yourComment:hover, .chatloop:hover {
+  animation-play-state: paused;
+}
+@keyframes move {
+    0% {left: 110vw;}
+    100% {left: -60vw;}
+}
+
+  /* grid */
+  .container {
+  width: 99vw;
+  height: 96vh;
+  display: grid; 
+  grid-auto-columns: 1fr; 
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr 0.3fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "one one two"
+    "one one three"
+    "four five six"
+    "footer footer footer"; 
+}
+.one { grid-area: one; mix-blend-mode: difference; }
+.two { grid-area: two; mix-blend-mode: difference;}
+.three { grid-area: three; mix-blend-mode: difference;}
+.four { grid-area: four; mix-blend-mode: difference;}
+.five { grid-area: five; mix-blend-mode: difference;}
+.six { grid-area: six; mix-blend-mode: difference;}
+.footer { grid-area: footer; }
+
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://unpkg.com/hydra-synth"></script>
+</head>
+<body>
+
+<!-- log -->
+  <div style="color: cornsilk; font-size: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    position: absolute; top: 30%; left: 1600px; width: 600px;">
+       <h1>Initial intent</h1>
+       <p>Building upon the last branch, what I am keen to achieve here is a 
+         multiplayer system, or at least, some experience similar to multiplayer. 
+         My initial attempt was setting up a facetime system. However, conceptually, 
+         I think it wouldn’t work for the core idea of my project well, which is 
+         about experimenting with one’s representation and identity in the virtual 
+         space. “Live comments” catch my attention at this point. It has the sense 
+         of multiplayer experience, meanwhile keeps a certain degree of ambiguity. 
+         Not like facetime, people who leave comments or messages still stay anonymous 
+         in some way. By reading these anonymous messages and reply to them, the 
+         user will have the chance to participate in a collective literature creation. 
+       </p>
+       <h1>Reflections in action</h1>
+       <p>
+        To begin with, I start to think about which sound to use. 
+        I want it to be disrupting to encourager the users or the 
+        players to think differently on their representations and places 
+        in virtual space, especially in front of this typical online meeting interface
+       </p>
+       <p>I tried white noise as background, it lacks interaction.</p>
+       <audio controls>
+         <source src="./sound/noise.wav" type="audio/wav">
+        </audio>
+        <p>Tone.js would be an interesting technology here since it offers a lot of interaction with sound.<br><br>
+          Rethinking which sound is disrupting for a web browser, Windows’ sound effects come to my mind.<br><br>
+          First, I tried winXP’s system error sound, it already has the effect that I wanted.<br><br>
+          Then, I tried win10’s system error sound and decided that’s the one I’m gonna use. 
+          WinXP’s error sound might be more classic but since most of the users are using win10, 
+          the confusion would be stronger here, they wouldn’t know whether the sound effect comes 
+          from their OS or the web.
+       </p>
+       <audio controls>
+         <source src="./sound/winxp.mp3" type="audio/mp3">
+       </audio>
+       <audio controls>
+        <source src="./sound/win10.mp3" type="audio/mp3">
+      </audio>
+      <p>I bump into some trouble installing tone.js. Get a bit 
+          confused by the nmp and static ways to install it.<br><br>
+        I realize that I make things complicated here, all I need is trigger 
+        sound when one interaction happens, no matter it is mouse move, mouse 
+        down, or page onload. All I need is an event listener here. Tone.js is more 
+        powerful for making instruments and might be too much for a single sound.
+        </p>
+       <img src="./img/installtone1.PNG" width="50%">
+       <p>
+        Tried mouse hover, mouse click, and on page load to trigger the sound effect. 
+        On page load just triggered once, and on mouse hover is overly responsible. 
+        I decided to use mouse click as the event listener. 
+       </p>
+       <p>I was struggling to build up a multiplayer system, and get stuck with 
+           technologies like WebRTC and PHP. It might be not enough time 
+           to do an actual multiuser system.
+        </p>
+        <p>Trying to think of another to achieve a similar experience. 
+            Web browsers’ built-in notification system caught my attention 
+            here. Along with css animation and random function in javascript. 
+            It can be a way to fake that multiplayer experience 
+            <a href="https://www.bilibili.com/video/BV1nt4y1U7Z4?share_source=copy_web" >see demo site here</a>
+        </p>
+       <img src="./img/danmu.PNG" width="90%">
+       <img src="./img/oneline2.PNG" width="90%">
+       <img src="./img/notification.PNG" width="50%">
+       <p>
+        Used javascript array and random method to get short messages for live comments. 
+        For the message “you” posted, I changed its color, and add “You: “ in front of it. 
+        I think that’s the necessary feedback for users here. Also, to give users more control, 
+        and to create more possibilities for the virtual space, I made css animation 
+        paused while the mouse hovering on. 
+       </p>
+       <img src="./img/chat array.PNG" width="50%">
+       <img src="./img/your chat.PNG" width="50%">
+       <p>
+        Button for “chat” and “end”, changed cursor to pointer, 
+        which indicates there are interactions here, and visually, 
+        basically made the buttons transparent.
+       </p>
+       <img src="./img/button.PNG" width="90%">
+       <img src="./img/button2.PNG" width="90%">
+   </div>
+
+   <div style="color: cornsilk; font-size: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   position: absolute; top: 30%; left: 2500px; width: 600px;">
+      <p>
+       Add background iterations by changing color gradient, so that users would 
+       know it’s a different virtual space when jumping to the next page.
+       Same with the end button, each page applies a different visual overlay.<br><br>
+       Add a link icon to the hidden back-to-start option, make it more apparent for users.<br><br>
+       Changed participants to 11 using photoshop.
+      </p>
+      <img src="./img/bgc2.PNG" width="50%">
+      <img src="./img/bgc3.PNG" width="50%">
+      <img src="./img/participants.PNG" width="90%">
+      <h1>Reflections on action</h1>
+      <p>
+       I’m glad to achieve that multiplayer effect finally, even if it is “fake”. 
+       Also, I haven’t considered sound design seriously in my previous branches, 
+       it can be world-changing, even just with a single sound. Sonic space would 
+       be an important aspect to consider for my future works. Inspired by last week’s class, 
+       designing a web brush/pen would be a direction for me to explore since there are 
+       plenty possible space out there.
+      </p>
+      <p>
+       From Patrick’s presentation, I’m a bit surprised how detailed 
+       the reflection-in-action is and how it focused on small pieces. 
+       I was thinking these small details were not really worth recording, 
+       and general ideas should be more focused on. Until I realize I am kind of 
+       unconsciously doing a similar thing. I always like to keep small notes while 
+       doing my work, maybe a flash of an idea, a small style change, a design constrain 
+       for the project, and so on. Not sure how many people still keep notes on paper, 
+       might not be very environment-friendly, I just found it hard for me to do notes 
+       digitally.  My expression might be not accurate, not really not worth recording, 
+       writing them down properly just never come to my mind. It’s a good starting point, 
+       I might do that more consciously for future works.
+      </p>
+      <img src="./img/note.jpg" width="70%">
+      <img src="./img/note1.jpg" width="70%">
+      <img src="./img/note2.jpg" width="70%">
+  </div>
+<!-- log -->
+
+<div style="background-color: transparent; position: absolute; width: 200px; height: 80px;
+top: 3600px; left: 5800px; font-size: 20px; padding: 20px;">
+  <a href="./index.html" style="text-decoration: none; color: white;">
+    <pre>Back to meeting!<img style="vertical-align:middle" src="./img/link_white_24dp.svg"></pre>
+  </a>
+</div>
+
+  <!-- <div id="error" >
+    <audio preload="auto" >
+      <source src="./sound/win10.mp3" type="audio/mp3">
+      <source src="./sound/winxp.mp3" type="audio/mp3">
+    </audio>
+  </div> -->
+
+ 
+<!-- <div id="snaptarget" class="ui-widget-header">
+  <p>I&apos;m a snap target</p>
+</div> -->
+ 
+<!-- <br style="clear:both"> -->
+
+<div class="container">
+
+
+
+<div class="footer" id="draggablefooter">
+  <div class="error" >
+    <img src="./img/footer.PNG" style="width: 99vw; mix-blend-mode: difference;">
+  </div>
+</div>
+
+<!-- <div id="draggable7" class="draggable ui-widget-content" style="background-color: darkgreen;">
+  <video id="cam7" style="width: 192px; height: 108px;"></video>
+</div>
+
+<div id="draggable8" class="draggable ui-widget-content" style="background-color: darksalmon;">
+  <video id="cam8" style="width: 192px; height: 108px;"></video>
+</div>
+
+<div id="draggable9" class="draggable ui-widget-content" style="background-color: deepskyblue;">
+  <video id="cam9" style="width: 192px; height: 108px;"></video>
+</div> -->
+ 
+<!-- <div id="draggable4" class="draggable ui-widget-content">
+  <p>I only snap to the big box</p>
+</div> -->
+ 
+<!-- <div id="draggable3" class="draggable ui-widget-content">
+  <p>I only snap to the outer edges of the big box</p>
+</div>
+ 
+<div id="draggable4" class="draggable ui-widget-content">
+  <p>I snap to a 20 x 20 grid</p>
+</div>
+ 
+<div id="draggable5" class="draggable ui-widget-content">
+  <p>I snap to a 80 x 80 grid</p>
+</div> -->
+
+<!-- <div style="top: 105%; left: 105%; position: absolute;">
+  <img src="./img/who.gif">
+</div> -->
+
+</div>
+
+<script>
+      $( function() {
+    $( "#draggablefooter" ).draggable({ snap: true });
+    // $( "#draggable4" ).draggable({ snap: ".ui-widget-header", snapMode: "inner" });
+    // $( "#draggable3" ).draggable({ snap: ".ui-widget-header", snapMode: "outer" });
+    // $( "#draggable4" ).draggable({ grid: [ 20, 20 ] });
+    // $( "#draggable5" ).draggable({ grid: [ 80, 80 ] });
+  } );
+</script>
+
+ 
+</body>
+</html>
