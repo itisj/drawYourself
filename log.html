@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="/resources/demos/style.css"> -->
   <style>
   html {background: rgb(209,0,255);
-background: radial-gradient(circle, rgba(209,0,255,1) 2%, rgba(198,255,0,1) 17%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 100%);}
+background: radial-gradient(circle, rgba(209,0,255,1) 2%, rgb(60, 0, 226) 17%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 100%);}
   body { overflow: hidden; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}
   .draggable { padding: 0px; margin: 0; mix-blend-mode: difference; }
   .ui-widget-header p, .ui-widget-content p { margin: 0; }
@@ -83,125 +83,100 @@ video {
 
 <!-- log -->
   <div style="color: cornsilk; font-size: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    position: absolute; top: 30%; left: 1600px; width: 600px;">
+    position: absolute; top: 30%; left: 1600px; width: 900px;">
        <h1>Initial intent</h1>
-       <p>Building upon the last branch, what I am keen to achieve here is a 
-         multiplayer system, or at least, some experience similar to multiplayer. 
-         My initial attempt was setting up a facetime system. However, conceptually, 
-         I think it wouldn’t work for the core idea of my project well, which is 
-         about experimenting with one’s representation and identity in the virtual 
-         space. “Live comments” catch my attention at this point. It has the sense 
-         of multiplayer experience, meanwhile keeps a certain degree of ambiguity. 
-         Not like facetime, people who leave comments or messages still stay anonymous 
-         in some way. By reading these anonymous messages and reply to them, the 
-         user will have the chance to participate in a collective literature creation. 
+       <p>I was surprised to see the diversity of my peer's works, 
+         and they give me a lot of inspiration. One is Jared's work, 
+         he designed some sound interactions along with the player's motions. 
+         Although mine is 2D, I think this idea would apply to mouse movements 
+         in my interface very well. The current audio interaction is one dimension. 
+         What if the users can have more sophisticated audio interactions, 
+         like different pitches or velocities according to the mouse's speeds 
+         and positions? The other one is TianningMiao's work, where she used 
+         the mouse as a brush, I think it might be fun to give users more 
+         control over visuals and offer them the chance to customize the interface.
        </p>
        <h1>Reflections in action</h1>
        <p>
-        To begin with, I start to think about which sound to use. 
-        I want it to be disrupting to encourager the users or the 
-        players to think differently on their representations and places 
-        in virtual space, especially in front of this typical online meeting interface
+        Based on the feedback I had from the last branch, 
+        I made the font size bigger for "your comment" 
+        and added a chat icon in front of it.
+        <img src="./img/you.PNG" width="90%">
+        <p>
+        Adding drawing and erasing function to the mouse.
        </p>
-       <p>I tried white noise as background, it lacks interaction.</p>
-       <audio controls>
-         <source src="./sound/noise.wav" type="audio/wav">
-        </audio>
-        <p>Tone.js would be an interesting technology here since it offers a lot of interaction with sound.<br><br>
-          Rethinking which sound is disrupting for a web browser, Windows’ sound effects come to my mind.<br><br>
-          First, I tried winXP’s system error sound, it already has the effect that I wanted.<br><br>
-          Then, I tried win10’s system error sound and decided that’s the one I’m gonna use. 
-          WinXP’s error sound might be more classic but since most of the users are using win10, 
-          the confusion would be stronger here, they wouldn’t know whether the sound effect comes 
-          from their OS or the web.
-       </p>
-       <audio controls>
-         <source src="./sound/winxp.mp3" type="audio/mp3">
-       </audio>
-       <audio controls>
-        <source src="./sound/win10.mp3" type="audio/mp3">
-      </audio>
-      <p>I bump into some trouble installing tone.js. Get a bit 
-          confused by the nmp and static ways to install it.<br><br>
-        I realize that I make things complicated here, all I need is trigger 
-        sound when one interaction happens, no matter it is mouse move, mouse 
-        down, or page onload. All I need is an event listener here. Tone.js is more 
-        powerful for making instruments and might be too much for a single sound.
-        </p>
-       <img src="./img/installtone1.PNG" width="50%">
-       <p>
-        Tried mouse hover, mouse click, and on page load to trigger the sound effect. 
-        On page load just triggered once, and on mouse hover is overly responsible. 
-        I decided to use mouse click as the event listener. 
-       </p>
-       <p>I was struggling to build up a multiplayer system, and get stuck with 
-           technologies like WebRTC and PHP. It might be not enough time 
-           to do an actual multiuser system.
-        </p>
-        <p>Trying to think of another to achieve a similar experience. 
-            Web browsers’ built-in notification system caught my attention 
-            here. Along with css animation and random function in javascript. 
-            It can be a way to fake that multiplayer experience 
-            <a href="https://www.bilibili.com/video/BV1nt4y1U7Z4?share_source=copy_web" >see demo site here</a>
-        </p>
-       <img src="./img/danmu.PNG" width="90%">
-       <img src="./img/oneline2.PNG" width="90%">
-       <img src="./img/notification.PNG" width="50%">
-       <p>
-        Used javascript array and random method to get short messages for live comments. 
-        For the message “you” posted, I changed its color, and add “You: “ in front of it. 
-        I think that’s the necessary feedback for users here. Also, to give users more control, 
-        and to create more possibilities for the virtual space, I made css animation 
-        paused while the mouse hovering on. 
-       </p>
-       <img src="./img/chat array.PNG" width="50%">
-       <img src="./img/your chat.PNG" width="50%">
-       <p>
-        Button for “chat” and “end”, changed cursor to pointer, 
-        which indicates there are interactions here, and visually, 
-        basically made the buttons transparent.
-       </p>
-       <img src="./img/button.PNG" width="90%">
-       <img src="./img/button2.PNG" width="90%">
+       <video width="90%" controls>
+        <source src="./img/p5-1.mp4" type="video/mp4">
+       </video>
+       <video width="90%" controls>
+        <source src="./img/p5-2.mp4" type="video/mp4">
+       </video>
+       <video width="90%" controls>
+        <source src="./img/p5-3.mp4" type="video/mp4">
+       </video>
+       <video width="90%" controls>
+        <source src="./img/p5-4.mp4" type="video/mp4">
+       </video>
+       <video width="90%" controls>
+        <source src="./img/p5-5.mp4" type="video/mp4">
+       </video>
+       <video width="90%" controls>
+        <source src="./img/p5-6.mp4" type="video/mp4">
+       </video>
+       <video width="90%" controls>
+        <source src="./img/p5-7.mp4" type="video/mp4">
+      </video>
+    
    </div>
 
    <div style="color: cornsilk; font-size: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-   position: absolute; top: 30%; left: 2500px; width: 600px;">
+   position: absolute; top: 30%; left: 2500px; width: 900px; padding-left: 100px;">
+      <video width="90%" controls>
+        <source src="./img/p5-8.mp4" type="video/mp4">
+      </video>
       <p>
-       Add background iterations by changing color gradient, so that users would 
-       know it’s a different virtual space when jumping to the next page.
-       Same with the end button, each page applies a different visual overlay.<br><br>
-       Add a link icon to the hidden back-to-start option, make it more apparent for users.<br><br>
-       Changed participants to 11 using photoshop.
+        I did some experiments on assigning the erasing function 
+        to mouse pressed and the drawing function to mouse up, 
+        or the other way around. I decided to let it draw while 
+        the mouse is pressed. For, in this way, two interactions 
+        combined with the drag event.
       </p>
-      <img src="./img/bgc2.PNG" width="50%">
-      <img src="./img/bgc3.PNG" width="50%">
-      <img src="./img/participants.PNG" width="90%">
+
+      <p>
+        It took me some time, and I still failed to achieve 
+        those planned audio interactions. The idea was to use 
+        the cursor's position as inputs, while it dragging an element, 
+        pitch or modulation would interact with coordinates.
+      </p>
+      <video width="90%" controls>
+        <source src="./img/tone1.mp4" type="video/mp4">
+       </video>
+       <video width="90%" controls>
+        <source src="./img/tone2.mp4" type="video/mp4">
+       </video>
+       <video width="90%" controls>
+        <source src="./img/tone3.mp4" type="video/mp4">
+       </video>
+      <img src="./img/note3.jpg" width="60%">
+      <img src="./img/note4.jpg" width="60%">
       <h1>Reflections on action</h1>
       <p>
-       I’m glad to achieve that multiplayer effect finally, even if it is “fake”. 
-       Also, I haven’t considered sound design seriously in my previous branches, 
-       it can be world-changing, even just with a single sound. Sonic space would 
-       be an important aspect to consider for my future works. Inspired by last week’s class, 
-       designing a web brush/pen would be a direction for me to explore since there are 
-       plenty possible space out there.
+        Overall, the idea that using the mouse as a brush/eraser worked in some way. 
+        I think it works especially well with those draggable elements, for players 
+        have to click their mice to move those elements and, in the meantime, draw on 
+        the interface. Interactions riched here with only one event. However, it might 
+        still have space for designing a control panel, on which the users can customize 
+        brush colors, size, effects, and so on. Also, it's such a shame that I didn't manage 
+        to achieve the audio interactions. Otherwise, the same event, which is mouse down and 
+        move, would have three aspects of interactions, drag an element, draw, and audio effects. <br><br>
+        Why do I think richer interactions for a single input matter here? This interface 
+        simulates those activities we do in the virtual space in an intensified and heightened way. 
+        You might minimize one interface over another and toggle between them. What if all the 
+        activities happen at one time with one mouse click. Your identities and representations 
+        tear into parts here, or, in some way, multiplied, intensified, and heightened here. 
+        That's why I think richer interaction over one input would serve my initial idea well.
       </p>
-      <p>
-       From Patrick’s presentation, I’m a bit surprised how detailed 
-       the reflection-in-action is and how it focused on small pieces. 
-       I was thinking these small details were not really worth recording, 
-       and general ideas should be more focused on. Until I realize I am kind of 
-       unconsciously doing a similar thing. I always like to keep small notes while 
-       doing my work, maybe a flash of an idea, a small style change, a design constrain 
-       for the project, and so on. Not sure how many people still keep notes on paper, 
-       might not be very environment-friendly, I just found it hard for me to do notes 
-       digitally.  My expression might be not accurate, not really not worth recording, 
-       writing them down properly just never come to my mind. It’s a good starting point, 
-       I might do that more consciously for future works.
-      </p>
-      <img src="./img/note.jpg" width="70%">
-      <img src="./img/note1.jpg" width="70%">
-      <img src="./img/note2.jpg" width="70%">
+
   </div>
 <!-- log -->
 

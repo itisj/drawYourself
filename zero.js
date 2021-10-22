@@ -410,17 +410,36 @@ function promptNewInnerHtml() {
   frameRate(60);
 }
 
+// function draw() {
+//   // blendMode(REMOVE);
+//   stroke(220*sin(mouseX/600*PI), 60, 250, 120);
+//   strokeWeight (2);
+//   if (mouseIsPressed) {
+//     fill(220*sin(mouseX/600*PI), 250, 250*cos(mouseY/300*PI), 120);
+//     ellipse(mouseX, mouseY, random(20,160));
+//     noErase();
+//   }
+//   else {
+//     ellipse(mouseX, mouseY, 120);
+//     erase(250);
+//   }
+// }
+
+
 function draw() {
   // blendMode(REMOVE);
-  stroke(220*sin(mouseX/600*PI), 60, 250, 120);
-  strokeWeight (2);
+  stroke(220*sin(mouseX/600*PI), 60, 250, 80);
+  strokeWeight (0);
   if (mouseIsPressed) {
-    fill(220*sin(mouseX/600*PI), 250, 250*cos(mouseY/300*PI), 120);
-    ellipse(mouseX, mouseY, random(20,160));
+    // blendMode(REMOVE);
+    // fill(127, 255, 0, 0.2);
+    fill(220*sin(mouseX/600*PI), 250, 250*cos(mouseY/300*PI), 50);
+    ellipse(mouseX, mouseY, random(50,80));
     noErase();
   }
   else {
-    ellipse(mouseX, mouseY, 120);
-    erase(250);
+    // blendMode(OVERLAY);
+    ellipse(mouseX, mouseY, 80);
+    erase(100);
   }
 }
