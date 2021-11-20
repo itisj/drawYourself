@@ -43,7 +43,7 @@ for(const cb of codeblocks) {
   const cd = cb.querySelector("div");
   cd.style.width = "100vw";
   cd.style.height = "100vh";
-  cd.style.left = "-2000px";
+  cd.style.left = "-6000px";
   cd.style.top = "0";
   cd.style.position = "absolute";
 //   cd.style.transform = "translate(0%, 0%)";
